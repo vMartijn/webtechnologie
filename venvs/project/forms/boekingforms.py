@@ -19,11 +19,11 @@ class ReservatieForm(FlaskForm):
     def validate_week(self, field):
         naam = self.naam.data
         week = field.data
-        bungalow = Bungalow.query.filter_by(naam=naam).first()
+        bungalow = Bungalow.query.filter_by(id=naam).first()
         existing_reservation = None #initialisatie. Anders wordt die niet gepakt
         
         if bungalow:
-            existing_reservation = Boeking.query.filter_by(bungalowId=bungalow.id, week=week).first()
+            existing_reservation = Boeking.query.filter_by(bungalowId=bungalow.id, weekNr=week).first()
         if existing_reservation:
             raise ValidationError('Deze bungalow is al gereserveerd voor deze week')
         else:

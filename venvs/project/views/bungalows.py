@@ -2,6 +2,7 @@ from flask import Flask, Blueprint, render_template, redirect, url_for, flash
 from project.forms.bungalowforms import bungalowToevoegen, bungalowVerwijderen
 from project import db
 from project.models.models import Bungalow, Type
+from flask_login import login_required
 
 bungalows_blueprint = Blueprint('bungalows',
                              __name__,
@@ -13,6 +14,7 @@ def lijst():
     return render_template('bungalows/lijst.html', bungalows = bungalows, Type = Type)
 
 @bungalows_blueprint.route('/toevoegen', methods=['GET', 'POST'])
+@login_required
 def toevoegen():
     form = bungalowToevoegen()
 
@@ -29,6 +31,7 @@ def toevoegen():
     return render_template('bungalows/toevoegen.html', form = form)
 
 @bungalows_blueprint.route('/verwijderen', methods=['GET', 'POST'])
+@login_required
 def verwijderen():
     form = bungalowVerwijderen()
     

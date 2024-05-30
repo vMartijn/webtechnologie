@@ -37,7 +37,7 @@ class Boeking(db.Model):
     __tablename__ = 'boekingen'
     id = db.Column(db.Integer,primary_key=True)
     userId = db.Column(db.Integer, db.ForeignKey('users.id', name="user_id"))
-    bungalowId = db.Column(db.Integer)
+    bungalowId = db.Column(db.Integer, db.ForeignKey('bungalows.id', name="bungalow_id"))
     weekNr = db.Column(db.Integer)
 
     def __init__(self, userId, bungalowId, weekNr):

@@ -1,7 +1,7 @@
 from project import app, db
 from flask import render_template, redirect, request, url_for, flash, Blueprint
-from flask_login import login_user, login_required, logout_user
-from project.models.models import User, Bungalow, Type
+from flask_login import login_user, login_required, logout_user, current_user
+from project.models.models import User, Bungalow, Type, Boeking
 from project.forms.authforms import LoginForm, RegistratieForm
 
 account_blueprint = Blueprint('account',
@@ -56,3 +56,10 @@ def registreren():
         return redirect(url_for('account.login'))
     
     return render_template('gebruiker/registreren.html', form=form) 
+
+@account_blueprint.route('/profiel', methods=['GET', 'POST'])
+@login_required
+def profiel():
+    userBoekingen = Boeking.query.filter_by(userId = current_user.id).all()
+
+    return render_template('gebruiker/profiel.html', boekingen=userBoekingen, Bungalow = Bungalow )

@@ -1,3 +1,16 @@
 {% extends "base.html" %}
 {% block content %}
+<h1>Welkom, {{ current_user.username }}</h1>
+<div class="mt-4">
+    <h2>Uw Reserveringen:</h2>
+    <ul>
+    {% for boeking in boekingen %}
+    {% set bungalow = Bungalow.query.get(boeking.bungalowId) %}
+        <li>Week:   {{ boeking.weekNr }}</li>
+        <li>Bungalow: {{ bungalow.naam }}</li>
+    {% else %}
+        <li>Geen reserveringen gevonden.</li>
+    {% endfor %}
+    </ul>
+</div>
 {% endblock %}
