@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<form  method="POST">
+    {{ form.hidden_tag() }}
+    {{ form.username.label }} {{form.username}}
+    <br>
+    {{ form.email.label }} {{form.email}}
+    <br>
+    {{ form.wachtwoord.label}} {{form.wachtwoord}}
+    <br>
+    {{ form.confirm.label}} {{form.confirm}}
+    <br>
+    {{ form.submit() }}
+</form>
+<a class="nav-item nav-link" href="{{ url_for('account.login') }}">Heeft u al een account? Klik hier</a>
+{% endblock %}>

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <div class="row mt-4" > {%for bungalow in bungalows%}
+        <div class ="col-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-title">{{bungalow.naam}}</div>
+                    {% if bungalow.type_id %}
+                    {% set type = Type.query.get(bungalow.type_id) %}
+                    <p>Weekprijs: {{ type.weekprijs }}</p>
+                    <p>Aantal Personen: {{ type.grootte }}</p>
+                    {% else %}
+                    <p>Weekprijs: N/A</p>
+                    {% endif %}
+                    <a class="nav-item nav-link" href="{{  url_for('boekingen.boeken') }}">Reserveren</a>
+                </div>
+            </div>
+        </div> {% endfor %}
+    </div>
+</div>
+  
+
+{% endblock %}

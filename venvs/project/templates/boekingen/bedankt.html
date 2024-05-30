@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Bedankt voor uw reservering. <br>Dit zijn de ingevulde gegevens:</h1>
+<ul>
+    <li>type: {{ session['type'] }}</li>
+    <li>week: {{ session['week'] }}</li>
+</ul>
+
+{% endblock %}

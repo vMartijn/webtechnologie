@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Selecteer uw keuzes om te reserveren</h1>
+<form  method="POST">
+    {{ form.hidden_tag() }}
+    {{ form.naam.label }} {{form.naam}}
+    <br>
+    {{ form.week.label}} {{form.week}}
+    <br>
+    {{ form.reserveer() }}
+</form>
+<a class="nav-item nav-link" href="{{ url_for('bungalows.lijst') }}">Terug naar bungalows</a>
+{% endblock %}

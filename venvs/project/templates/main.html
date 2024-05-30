@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+        <div class="container" >
+            <h1 class="text-center" style="font-size:50px; margin-top:6%">Bungalowpark Zee & Duin</h1>
+            <div class="mt-5">
+                <div class="text-center" style="font-size:20px;"> Opzoek naar een vakantieplek voor de komende periode? Zoek dan niet verder!
+                    Wij bieden u meerdere plekken aan voor de beste prijs! Al komt u met maar liefst 8 personen hebben wij nog de 
+                    beste deal voor u!
+                </div>
+            </div> 
+            <div style="margin-top: 6%;"> 
+                <p class="text-center"> Hier zijn wat van onze huidige bungalows! Wilt u er meer zien? Navigeer dan naar de bungalow lijst in de navigatie</p>
+                <div class="row">{%for bungalow in bungalows%}
+                    <div class="col-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-title">{{bungalow.naam}}</div>
+                                {% if bungalow.type_id %}
+                                {% set type = Type.query.get(bungalow.type_id) %}
+                                <p>Weekprijs: {{ type.weekprijs }}</p>
+                                <p>Aantal Personen: {{ type.grootte }}</p>
+                                {% else %}
+                                <p>Weekprijs: N/A</p>
+                                {% endif %}
+                                <a class="nav-item nav-link" href="{{  url_for('boekingen.boeken') }}">Reserveren</a>
+                            </div>
+                        </div> 
+                    </div>  {% endfor %}
+                </div> 
+            </div>
+        </div>
+{% endblock %}
+

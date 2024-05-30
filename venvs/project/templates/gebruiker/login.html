@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<form  method="POST">
+    {{ form.hidden_tag() }}
+    {{ form.email.label }} {{form.email}}
+    <br>
+    {{ form.wachtwoord.label}} {{form.wachtwoord}}
+    <br>
+    {{ form.submit() }}
+</form>
+<a class="nav-item nav-link" href="{{ url_for('account.registreren') }}">Nog geen account? Klik hier</a>
+{% endblock %}>
